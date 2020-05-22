@@ -1,79 +1,18 @@
 import React from 'react';
+import Keyboard from './Keyboard';
 
 function App() {
     return (
-        <div class="keyboard">
-            <div class="keyboard-row">
-                <div class="key small">`</div>
-                <div class="key">1</div>
-                <div class="key">2</div>
-                <div class="key">3</div>
-                <div class="key">4</div>
-                <div class="key">5</div>
-                <div class="key">6</div>
-                <div class="key">7</div>
-                <div class="key">8</div>
-                <div class="key">9</div>
-                <div class="key">0</div>
-                <div class="key">-</div>
-                <div class="key">+</div>
-                <div class="key command">Backspace</div>
-            </div>
-            <div class="keyboard-row">
-                <div class="key command">Tab</div>
-                <div class="key">Q</div>
-                <div class="key">W</div>
-                <div class="key">E</div>
-                <div class="key">R</div>
-                <div class="key">T</div>
-                <div class="key">Y</div>
-                <div class="key">U</div>
-                <div class="key">I</div>
-                <div class="key">O</div>
-                <div class="key">P</div>
-                <div class="key">[</div>
-                <div class="key">]</div>
-                <div class="key command">\</div>
-            </div>
-            <div class="keyboard-row">
-                <div class="key command">Caps Lock</div>
-                <div class="key">A</div>
-                <div class="key">S</div>
-                <div class="key">D</div>
-                <div class="key">F</div>
-                <div class="key">G</div>
-                <div class="key">H</div>
-                <div class="key">J</div>
-                <div class="key">K</div>
-                <div class="key">L</div>
-                <div class="key">;</div>
-                <div class="key">'</div>
-                <div class="key command">Enter</div>
-            </div>
-            <div class="keyboard-row">
-                <div class="key command">Shift</div>
-                <div class="key">Z</div>
-                <div class="key">X</div>
-                <div class="key">C</div>
-                <div class="key">V</div>
-                <div class="key">B</div>
-                <div class="key">N</div>
-                <div class="key">M</div>
-                <div class="key">,</div>
-                <div class="key">.</div>
-                <div class="key">/</div>
-                <div class="key command">Shift</div>
-            </div>
-            <div class="keyboard-row">
-                <div class="key">Ctrl</div>
-                <div class="key"></div>
-                <div class="key">Alt</div>
-                <div class="key space">probel</div>
-                <div class="key">Alt</div>
-                <div class="key"></div>
-                <div class="key">Ctrl</div>
-            </div>
-        </div >
+        <div class="content">
+            <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+             sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+             like Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <Keyboard />
+        </div>
     );
 }
 

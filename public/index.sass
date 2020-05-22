@@ -1,6 +1,25 @@
-.keyboard
-  display: inline-block
+html, body
+  height: 100%
+  margin: 0
+  font-size: 1.5vw
+
+.root
+  height: 100%
+
+.content
+  display: grid
+  grid-template-rows: 50% 50%
+  height: 100%
+
+.text
+  margin: auto
   width: 50%
+
+.keyboard
+  width: 65%
+  margin: auto
+  grid-row-start: 2
+  display: block
 
 .keyboard-row
   display: flex
@@ -8,19 +27,24 @@
 
 .key
   border: 1px solid black
-  width: 2.5em
-  padding-bottom: 0.5em
-  padding-top: 0.5em
+  width: 4vw
+  height: 4vw
   border-radius: 0.1em
   margin: 0.1em
   text-align: center
+  display: flex
+  justify-content: center
+  align-items: center
 
 .small
-  width: 1.8em
+  width: 2em
 
 .space
   flex-grow: 1
 
 .command
   flex-grow: 1
-  padding: 0.5em
+  text-align: left
+
+.right
+  text-align: right
