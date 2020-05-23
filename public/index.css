@@ -49,15 +49,11 @@ html, body {
 
 .space {
   flex-grow: 1;
-  border: 2px solid #e4e4e4;
-  color: #999;
 }
 
 .command {
   flex-grow: 1;
   text-align: left;
-  border: 2px solid #e4e4e4;
-  color: #999;
 }
 
 .grey {
