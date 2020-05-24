@@ -3,11 +3,13 @@ import Key from './Key';
 
 const Row = ({ keys }) => (
     <div className="keyboard-row">
-        {keys.map(key => (
+        {keys.map((key, index) => (
             <Key
+                key={index}
                 glyph={key.glyph}
                 color={key.color}
                 size={key.size}
+                code={key.code}
             />
         ))}
     </div>

@@ -1,20 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Key extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            clicked: "false"
-        };
+    isPressed = (code) => {
+        return this.props.pressed.indexOf(code) !== -1;
     }
 
     render() {
         return (
-            <div class={"key " + this.props.size + " " + this.props.color}>
+            <div className={"key " + this.props.size + " " + this.props.color + (this.isPressed(this.props.code) ? " pressed" : "")}>
                 {this.props.glyph}
             </div >
         );
     }
 }
 
-export default Key;
+const mapStateToProps = state => ({
+    pressed: state
+});
+
+export default connect(mapStateToProps)(Key);

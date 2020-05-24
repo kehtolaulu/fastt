@@ -85,4 +85,8 @@ html, body {
   background-color: #aec6e0;
 }
 
+.pressed {
+  filter: brightness(50%);
+}
+
 /*# sourceMappingURL=index.css.map */
