@@ -8,15 +8,19 @@ class Key extends React.Component {
 
     render() {
         return (
-            <div className={"key " + this.props.size + " " + this.props.color + (this.isPressed(this.props.code) ? " pressed" : "")}>
-                {this.props.glyph}
+            <div className={"key " +
+                this.props.size + " " +
+                this.props.color +
+                (this.isPressed(this.props.code) ? " pressed" : "")}>
+                {this.props.shift ? this.props.upperGlyph : this.props.glyph}
             </div >
         );
     }
 }
 
 const mapStateToProps = state => ({
-    pressed: state
+    pressed: state.pressed,
+    shift: state.shift
 });
 
 export default connect(mapStateToProps)(Key);

@@ -10,6 +10,7 @@ const Row = ({ keys }) => (
                 color={key.color}
                 size={key.size}
                 code={key.code}
+                upperGlyph={key.upperGlyph}
             />
         ))}
     </div>

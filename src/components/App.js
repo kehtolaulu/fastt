@@ -2,23 +2,40 @@ import React from 'react';
 import Keyboard from './Keyboard';
 import keys from '../qwerty';
 import { connect } from 'react-redux';
-import { setPressedButton, releaseButton } from '../actions';
+import { setPressedButton, releaseButton, setShift, releaseShift } from '../actions';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.content = React.createRef();
+    }
+
     handleClick = (key) => {
+        if (key.keyCode === 16) {
+            this.props.setShift();
+        }
         this.props.setPressedButton(key.keyCode);
     }
 
     handleRelease = (key) => {
+        if (key.keyCode === 16) {
+            this.props.releaseShift();
+        }
         this.props.releaseButton(key.keyCode);
+    }
+
+    handleBlur = () => {
+        this.content.current.focus();
     }
 
     render() {
         return (
             <div className="content"
+                ref={this.content}
                 tabIndex="0"
                 onKeyDown={(key) => this.handleClick(key)}
                 onKeyUp={(key) => this.handleRelease(key)}
+                onBlur={this.handleBlur}
             >
                 <div className="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
@@ -34,12 +51,14 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    pressed: state
+    pressed: state.pressed
 });
 
 const mapDispatchToProps = dispatch => ({
     setPressedButton: (code) => dispatch(setPressedButton(code)),
-    releaseButton: (code) => dispatch(releaseButton(code))
+    releaseButton: (code) => dispatch(releaseButton(code)),
+    setShift: () => dispatch(setShift()),
+    releaseShift: () => dispatch(releaseShift())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
