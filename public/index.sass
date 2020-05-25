@@ -1,6 +1,72 @@
-$font-stack:    Helvetica, sans-serif
-$primary-color: #333
+html, body
+  height: 100%
+  margin: 0
+  font-size: 1.5vw
 
-body
-  font: 100% $font-stack
-  color: $primary-color
+.root
+  height: 100%
+
+.content
+  display: grid
+  grid-template-rows: 50% 50%
+  height: 100%
+
+.text
+  margin: auto
+  width: 50%
+
+.keyboard
+  width: 65%
+  margin: auto
+  grid-row-start: 2
+  display: block
+
+.keyboard-row
+  display: flex
+  width: auto
+
+.key
+  border: 1px solid black
+  width: 4vw
+  height: 4vw
+  border-radius: 0.1em
+  margin: 0.1em
+  text-align: center
+  display: flex
+  justify-content: center
+  align-items: center
+
+.small
+  width: 2em
+
+.space
+  flex-grow: 1
+
+.command
+  flex-grow: 1
+  text-align: left
+
+.grey
+  border: 2px solid #e4e4e4
+  color: #999
+
+.right
+  text-align: right
+
+.finger-5
+  background-color: #f4b3c2
+
+.finger-4
+  background-color: #fdcf8c
+
+.finger-3
+  background-color: #bcdd9c
+
+.finger-2-left
+  background-color: #a3dce0
+
+.finger-2-right
+  background-color: #aec6e0
+
+.pressed-true
+  filter: brightness(50%)
