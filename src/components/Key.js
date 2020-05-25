@@ -8,10 +8,7 @@ class Key extends React.Component {
 
     render() {
         return (
-            <div className={"key " +
-                this.props.size + " " +
-                this.props.color +
-                (this.isPressed(this.props.code) ? " pressed" : "")}>
+            <div className={`key ${this.props.size} ${this.props.color} pressed-${this.isPressed(this.props.code)}`}>
                 {this.props.shift ? this.props.upperGlyph : this.props.glyph}
             </div >
         );

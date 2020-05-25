@@ -85,7 +85,7 @@ html, body {
   background-color: #aec6e0;
 }
 
-.pressed {
+.pressed-true {
   filter: brightness(50%);
 }
 

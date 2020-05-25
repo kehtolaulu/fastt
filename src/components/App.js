@@ -33,8 +33,8 @@ class App extends React.Component {
             <div className="content"
                 ref={this.content}
                 tabIndex="0"
-                onKeyDown={(key) => this.handleClick(key)}
-                onKeyUp={(key) => this.handleRelease(key)}
+                onKeyDown={this.handleClick}
+                onKeyUp={this.handleRelease}
                 onBlur={this.handleBlur}
             >
                 <div className="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
