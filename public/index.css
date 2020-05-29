@@ -102,4 +102,12 @@ html, body {
   width: 100%;
 }
 
+.color-true {
+  color: black;
+}
+
+.color-false {
+  color: red;
+}
+
 /*# sourceMappingURL=index.css.map */
