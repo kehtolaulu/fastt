@@ -3,7 +3,8 @@ import {
     RELEASE_BUTTON,
     SET_SHIFT,
     RELEASE_SHIFT,
-    CHANGE_TEXT
+    CHANGE_TEXT,
+    NEXT_TEXT
 } from '../constants/actionTypes';
 
 export const setPressedButton = (code) => ({
@@ -24,7 +25,11 @@ export const releaseShift = () => ({
     type: RELEASE_SHIFT
 });
 
-export const changeText = (text) => ({
+export const changeText = (text, targetText) => ({
     type: CHANGE_TEXT,
-    text
+    text, targetText
+});
+
+export const nextText = () => ({
+    type: NEXT_TEXT
 });

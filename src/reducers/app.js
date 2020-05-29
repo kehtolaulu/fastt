@@ -3,9 +3,11 @@ import {
     RELEASE_BUTTON,
     SET_SHIFT,
     RELEASE_SHIFT,
-    CHANGE_TEXT
+    CHANGE_TEXT,
+    NEXT_TEXT
 } from '../constants/actionTypes';
 import { combineReducers } from 'redux';
+import texts from '../texts';
 
 const pressed = (state = [], action) => {
     if (!action) {
@@ -38,8 +40,16 @@ const shift = (state = false, action) => {
     }
 };
 
-const text = (state = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.") => {
-    return state;
+const text = (state = texts[Math.floor(Math.random() * texts.length)], action) => {
+    if (!action) {
+        return state;
+    }
+    switch (action.type) {
+        case NEXT_TEXT:
+            return texts[Math.floor(Math.random() * texts.length)];
+        default:
+            return state;
+    }
 };
 
 const isTextRight = (state = false, action) => {
@@ -48,7 +58,7 @@ const isTextRight = (state = false, action) => {
     }
     switch (action.type) {
         case CHANGE_TEXT:
-            return action.text === text().slice(0, action.text.length);
+            return action.text === action.targetText.slice(0, action.text.length);
         default:
             return state;
     }
