@@ -4,33 +4,32 @@ import keys from '../qwerty';
 import { connect } from 'react-redux';
 import { setPressedButton, releaseButton, setShift, releaseShift, changeText, nextText } from '../actions';
 import Display from './Display';
-import distance from '../distance';
+import accuracy from '../accuracy';
+import Speedometer from '../speedometer';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.content = React.createRef();
         this.state = {
-            speed: 0,
-            startTime: 0,
-            counter: 0,
-            accuracy: 0
+            speedometer: new Speedometer(),
+            accuracy: 0,
+            speed: 0
         };
     }
 
+    get speedometer() {
+        return this.state.speedometer;
+    }
+
     handleClick = (key) => {
-        if (!this.state.startTime) {
-            this.setState({ startTime: Date.now() });
+        if (!this.speedometer.hasStarted()) {
+            this.speedometer.start();
         }
         if (key.keyCode === 16) {
             this.props.setShift();
         }
         this.props.setPressedButton(key.keyCode);
-        // скорость в секунду = число кнопочек разделить на время
-        this.setState({
-            speed: Math.floor(this.state.counter / ((Date.now() - this.state.startTime) / 1000) * 60),
-            counter: this.state.counter + 1
-        });
     }
 
     handleRelease = (key) => {
@@ -46,14 +45,14 @@ class App extends React.Component {
 
     handleChange = (e) => {
         this.props.changeText(e.target.value, this.props.text);
+        this.setState({ speed: this.speedometer.speed(e.target.value) });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // 1 - distance / text length
-        this.setState({ accuracy: 100 - 100 * distance(this.props.text, e.target.lastElementChild.value) / this.props.text.length });
+        this.setState({ accuracy: accuracy(e.target.lastElementChild.value, this.props.text) });
         e.target.reset();
-        this.setState({ startTime: 0, counter: 0, speed: 0 });
+        this.setState({ speed: 0 });
         this.props.nextText();
     }
 

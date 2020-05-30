@@ -7,7 +7,7 @@ import {
     NEXT_TEXT
 } from '../constants/actionTypes';
 import { combineReducers } from 'redux';
-import texts from '../texts';
+import getRandomText from '../texts';
 
 const pressed = (state = [], action) => {
     if (!action) {
@@ -40,13 +40,13 @@ const shift = (state = false, action) => {
     }
 };
 
-const text = (state = texts[Math.floor(Math.random() * texts.length)], action) => {
+const text = (state = getRandomText(), action) => {
     if (!action) {
         return state;
     }
     switch (action.type) {
         case NEXT_TEXT:
-            return texts[Math.floor(Math.random() * texts.length)];
+            return getRandomText();
         default:
             return state;
     }
