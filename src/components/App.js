@@ -3,13 +3,14 @@ import Keyboard from './Keyboard';
 import keys from '../qwerty';
 import { connect } from 'react-redux';
 import { setPressedButton, releaseButton, setShift, releaseShift, changeText, nextText } from '../actions';
+import Display from './Display';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.content = React.createRef();
         this.state = {
-            time: 0,
+            speed: 0,
             startTime: 0,
             counter: 0
         };
@@ -25,7 +26,7 @@ class App extends React.Component {
         this.props.setPressedButton(key.keyCode);
         // скорость в секунду = число кнопочек разделить на время
         this.setState({
-            time: Math.floor(this.state.counter / ((Date.now() - this.state.startTime) / 1000) * 60),
+            speed: Math.floor(this.state.counter / ((Date.now() - this.state.startTime) / 1000) * 60),
             counter: this.state.counter + 1
         });
     }
@@ -58,19 +59,12 @@ class App extends React.Component {
                 onKeyDown={this.handleClick}
                 onKeyUp={this.handleRelease}
                 onBlur={this.handleBlur}>
-                <div className="text">
-                    <p className={`text-container color-${this.props.isTextRight}`} >
-                        {this.props.text}
-                    </p>
-                    <form onSubmit={this.handleSubmit}>
-                        <input className="text-input"
-                            type="text"
-                            maxLength="75"
-                            onChange={this.handleChange}
-                            spellCheck="false" />
-                    </form>
-                    <p>Speed: {this.state.time} chars/min</p>
-                </div>
+                <Display
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                    speed={this.state.speed}
+                    text={this.props.text}
+                    isTextRight={this.props.isTextRight} />
                 <Keyboard keys={keys} />
             </div >
         );
