@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Display = ({ handleSubmit, handleChange, isTextRight, text, speed }) => (
+const Display = ({ handleSubmit, handleChange, isTextRight, text, speed, accuracy }) => (
     <div className="text">
         <p className={`text-container color-${isTextRight}`} >
             {text}
@@ -13,6 +13,7 @@ const Display = ({ handleSubmit, handleChange, isTextRight, text, speed }) => (
                 spellCheck="false" />
         </form>
         <p>Speed: {speed} chars/min</p>
+        <p>Accuracy: {accuracy} %</p>
     </div>
 );
 

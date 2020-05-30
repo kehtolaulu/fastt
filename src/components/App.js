@@ -4,6 +4,7 @@ import keys from '../qwerty';
 import { connect } from 'react-redux';
 import { setPressedButton, releaseButton, setShift, releaseShift, changeText, nextText } from '../actions';
 import Display from './Display';
+import distance from '../distance';
 
 class App extends React.Component {
     constructor(props) {
@@ -12,7 +13,8 @@ class App extends React.Component {
         this.state = {
             speed: 0,
             startTime: 0,
-            counter: 0
+            counter: 0,
+            accuracy: 0
         };
     }
 
@@ -48,7 +50,10 @@ class App extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        // 1 - distance / text length
+        this.setState({ accuracy: 100 - 100 * distance(this.props.text, e.target.lastElementChild.value) / this.props.text.length });
         e.target.reset();
+        this.setState({ startTime: 0, counter: 0, speed: 0 });
         this.props.nextText();
     }
 
@@ -64,7 +69,8 @@ class App extends React.Component {
                     handleSubmit={this.handleSubmit}
                     speed={this.state.speed}
                     text={this.props.text}
-                    isTextRight={this.props.isTextRight} />
+                    isTextRight={this.props.isTextRight}
+                    accuracy={this.state.accuracy} />
                 <Keyboard keys={keys} />
             </div >
         );
