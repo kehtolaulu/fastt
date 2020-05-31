@@ -4,7 +4,8 @@ import {
     SET_SHIFT,
     RELEASE_SHIFT,
     CHANGE_TEXT,
-    NEXT_TEXT
+    NEXT_TEXT,
+    SET_LANGUAGE
 } from '../constants/actionTypes';
 import { combineReducers } from 'redux';
 import getRandomText from '../texts';
@@ -40,13 +41,19 @@ const shift = (state = false, action) => {
     }
 };
 
-const text = (state = getRandomText(), action) => {
+const text = (state = { text: getRandomText(), language: "en" }, action) => {
     if (!action) {
         return state;
     }
     switch (action.type) {
         case NEXT_TEXT:
-            return getRandomText();
+            return { ...state, text: getRandomText(state.language) };
+        case SET_LANGUAGE:
+            debugger
+            return {
+                text: getRandomText(action.language),
+                language: action.language
+            }
         default:
             return state;
     }

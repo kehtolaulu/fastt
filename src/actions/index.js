@@ -4,7 +4,8 @@ import {
     SET_SHIFT,
     RELEASE_SHIFT,
     CHANGE_TEXT,
-    NEXT_TEXT
+    NEXT_TEXT,
+    SET_LANGUAGE
 } from '../constants/actionTypes';
 
 export const setPressedButton = (code) => ({
@@ -32,4 +33,9 @@ export const changeText = (text, targetText) => ({
 
 export const nextText = () => ({
     type: NEXT_TEXT
+});
+
+export const setLanguage = (language) => ({
+    type: SET_LANGUAGE,
+    language
 });

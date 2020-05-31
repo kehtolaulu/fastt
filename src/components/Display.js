@@ -1,6 +1,7 @@
 import React from 'react';
+import getWord from '../translate';
 
-const Display = ({ handleSubmit, handleChange, isTextRight, text, speed, accuracy }) => (
+const Display = ({ handleSubmit, handleChange, isTextRight, text, speed, accuracy, language }) => (
     <div className="text">
         <p className={`text-container color-${isTextRight}`} >
             {text}
@@ -12,8 +13,8 @@ const Display = ({ handleSubmit, handleChange, isTextRight, text, speed, accurac
                 onChange={handleChange}
                 spellCheck="false" />
         </form>
-        <p>Speed: {speed} chars/min</p>
-        <p>Accuracy: {accuracy} %</p>
+        <p>{getWord("speed", language)}: <span>{speed}</span> {getWord("speedUnit", language)}</p>
+        <p>{getWord("accuracy", language)}: <span>{accuracy}</span> %</p>
     </div>
 );
 

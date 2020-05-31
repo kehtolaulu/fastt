@@ -2,7 +2,7 @@ import React from 'react';
 import Keyboard from './Keyboard';
 import keys from '../qwerty';
 import { connect } from 'react-redux';
-import { setPressedButton, releaseButton, setShift, releaseShift, changeText, nextText } from '../actions';
+import { setPressedButton, releaseButton, setShift, releaseShift, changeText, nextText, setLanguage } from '../actions';
 import Display from './Display';
 import accuracy from '../accuracy';
 import Speedometer from '../speedometer';
@@ -56,6 +56,10 @@ class App extends React.Component {
         this.props.nextText();
     }
 
+    handleLanguageChange = (e) => {
+        this.props.setLanguage(e.target.value.toLowerCase());
+    }
+
     render() {
         return (
             <div className="content"
@@ -69,8 +73,9 @@ class App extends React.Component {
                     speed={this.state.speed}
                     text={this.props.text}
                     isTextRight={this.props.isTextRight}
-                    accuracy={this.state.accuracy} />
-                <Keyboard keys={keys} />
+                    accuracy={this.state.accuracy}
+                    language={this.props.language} />
+                <Keyboard keys={keys(this.props.language)} handleLanguageChange={this.handleLanguageChange} />
             </div >
         );
     }
@@ -78,8 +83,9 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     pressed: state.pressed,
-    text: state.text,
-    isTextRight: state.isTextRight
+    text: state.text.text,
+    isTextRight: state.isTextRight,
+    language: state.text.language
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -88,7 +94,8 @@ const mapDispatchToProps = dispatch => ({
     setShift: () => dispatch(setShift()),
     releaseShift: () => dispatch(releaseShift()),
     changeText: (text, targetText) => dispatch(changeText(text, targetText)),
-    nextText: () => dispatch(nextText())
+    nextText: () => dispatch(nextText()),
+    setLanguage: (language) => dispatch(setLanguage(language))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
