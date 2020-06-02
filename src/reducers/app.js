@@ -49,7 +49,6 @@ const text = (state = { text: getRandomText(), language: "en" }, action) => {
         case NEXT_TEXT:
             return { ...state, text: getRandomText(state.language) };
         case SET_LANGUAGE:
-            debugger
             return {
                 text: getRandomText(action.language),
                 language: action.language
