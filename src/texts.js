@@ -14,7 +14,6 @@ const texts = {
 };
 
 const getRandomText = (language = "en") => {
-    debugger
     return texts[language][Math.floor(Math.random() * texts[language].length)];
 };
 
